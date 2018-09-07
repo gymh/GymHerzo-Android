@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_folded_newspaper"
+            android:title="News" />
+        <item
+            android:id="@+id/nav_vertretungsplan"
+            android:icon="@drawable/ic_change"
+            android:title="Vertretungsplan" />
+        <item
+            android:id="@+id/nav_notizen"
+            android:icon="@drawable/edit"
+            android:title="Notizen" />
+        <item
+            android:id="@+id/nav_termine"
+            android:icon="@drawable/calendar"
+            android:title="Termine" />
+        <item
+            android:id="@+id/nav_speiseplan"
+            android:icon="@drawable/ic_restaurant"
+            android:title="Speiseplan" />
+        <item
+            android:id="@+id/nav_noten"
+            android:icon="@drawable/ic_noten"
+            android:title="Noten" />
+        <item
+            android:id="@+id/nav_stundenplan"
+            android:icon="@drawable/ic_clock"
+            android:title="Stundenplan" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Einstellungen" />
+    </group>
+</menu>

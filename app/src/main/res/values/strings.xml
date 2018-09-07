@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Gym Herzo</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string-array name="startseiten">
+        <item>News</item>
+        <item>Vertretungsplan</item>
+        <item>Notizen</item>
+        <item>Termine</item>
+        <item>Speiseplan</item>
+        <item>Noten</item>
+        <item>Stundenplan</item>
+    </string-array>
+</resources>

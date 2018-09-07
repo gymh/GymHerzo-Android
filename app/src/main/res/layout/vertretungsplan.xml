@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/montag"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/dienstag"
+        android:layout_toStartOf="@+id/dienstag"
+        android:text="MO" />
+
+    <Button
+        android:id="@+id/dienstag"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/mittwoch"
+        android:layout_toStartOf="@+id/mittwoch"
+        android:text="DI" />
+
+    <Button
+        android:id="@+id/mittwoch"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="MI" />
+
+    <Button
+        android:id="@+id/donnerstag"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/mittwoch"
+        android:layout_toRightOf="@+id/mittwoch"
+        android:text="DO" />
+
+    <Button
+        android:id="@+id/freitag"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/donnerstag"
+        android:layout_toRightOf="@+id/donnerstag"
+        android:text="FR" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/freitag">
+
+    </WebView>
+</RelativeLayout>
