@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
             webView = view.findViewById(R.id.webView);
-            showInFragmentWebView(webView, "http://mensawelten.de/LOGINPLAN.ASPX?P=FO111&E=herz", getActivity());
+            showInFragmentWebView(webView, "http://philippdormann.de/gymh/mensaplan", getActivity());
             return view;
         }
     }
