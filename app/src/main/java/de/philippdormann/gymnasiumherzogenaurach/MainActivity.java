@@ -7,16 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -34,6 +24,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @SuppressLint("StaticFieldLeak")
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressLint("SetJavaScriptEnabled")
     private static void showInFragmentWebView(final WebView webView, String url, Context context) {
         webView.setWebViewClient(new WebViewClient());
+        if (!offline(context)) {
+            webView.clearCache(true);
+        }
         if (offline(context)) {
             webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
@@ -64,6 +69,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         webView.loadUrl(url);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private static boolean offline(Context context) {
@@ -98,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.replace(R.id.contentFrame, new Vertretungsplan());
                 break;
             case 2:
-                fragmentTransaction.replace(R.id.contentFrame, new Notizen());
+                fragmentTransaction.replace(R.id.contentFrame, new Todo());
                 break;
             case 3:
                 fragmentTransaction.replace(R.id.contentFrame, new Termine());
@@ -110,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.replace(R.id.contentFrame, new Noten());
                 break;
             case 6:
-                fragmentTransaction.replace(R.id.contentFrame, new Stundenplan());
+                fragmentTransaction.replace(R.id.contentFrame, new Lehrer());
                 break;
             default:
                 fragmentTransaction.replace(R.id.contentFrame, new News());
@@ -123,16 +138,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -150,6 +155,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_notizen:
                 fragmentToPlace = new Notizen();
                 break;
+            case R.id.nav_todo:
+                fragmentToPlace = new Todo();
+                break;
             case R.id.nav_termine:
                 fragmentToPlace = new Termine();
                 break;
@@ -159,8 +167,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_noten:
                 fragmentToPlace = new Noten();
                 break;
-            case R.id.nav_stundenplan:
-                fragmentToPlace = new Stundenplan();
+            case R.id.nav_lehrer:
+                fragmentToPlace = new Lehrer();
                 break;
             case R.id.nav_settings:
                 fragmentToPlace = new Settings();
@@ -175,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public static class News extends android.support.v4.app.Fragment {
+    static class News extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -185,7 +193,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Termine extends android.support.v4.app.Fragment {
+    static class Todo extends Fragment {
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.webview, container, false);
+            webView = view.findViewById(R.id.webView);
+            showInFragmentWebView(webView, "https://philippdormann.de/gymh/todo", getActivity());
+            return view;
+        }
+    }
+
+    static class Lehrer extends Fragment {
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.lehrer, container, false);
+            return view;
+        }
+    }
+
+    static class Noten extends Fragment {
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.noten, container, false);
+            return view;
+        }
+    }
+
+    static class Termine extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -195,23 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Noten extends android.support.v4.app.Fragment {
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.noten, container, false);
-            return view;
-        }
-    }
-
-    public static class Stundenplan extends android.support.v4.app.Fragment {
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.stundenplan, container, false);
-            return view;
-        }
-    }
-
-    public static class Vertretungsplan extends android.support.v4.app.Fragment {
+    static class Vertretungsplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.vertretungsplan, container, false);
@@ -271,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Speiseplan extends android.support.v4.app.Fragment {
+    static class Speiseplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -281,10 +299,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Notizen extends android.support.v4.app.Fragment {
+    static class Notizen extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.notizen, container, false);
+            View view = inflater.inflate(R.layout.notiz, container, false);
 
             SharedPreferences sharedPref = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
             final SharedPreferences.Editor editor = sharedPref.edit();
@@ -311,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Settings extends android.support.v4.app.Fragment {
+    static class Settings extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.settings, container, false);

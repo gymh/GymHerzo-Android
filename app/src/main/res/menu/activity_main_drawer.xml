@@ -17,6 +17,10 @@
             android:icon="@drawable/edit"
             android:title="Notizen" />
         <item
+            android:id="@+id/nav_todo"
+            android:icon="@drawable/todo"
+            android:title="ToDo" />
+        <item
             android:id="@+id/nav_termine"
             android:icon="@drawable/calendar"
             android:title="Termine" />
@@ -29,9 +33,9 @@
             android:icon="@drawable/ic_noten"
             android:title="Noten" />
         <item
-            android:id="@+id/nav_stundenplan"
-            android:icon="@drawable/ic_clock"
-            android:title="Stundenplan" />
+            android:id="@+id/nav_lehrer"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="Lehrer" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
