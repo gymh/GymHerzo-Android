@@ -30,7 +30,6 @@
             android:title="Speiseplan" />
         <item
             android:id="@+id/nav_noten"
-            android:enabled="false"
             android:icon="@drawable/ic_noten"
             android:title="Noten" />
         <item
@@ -43,7 +42,6 @@
             android:title="Fächer" />
         <item
             android:id="@+id/nav_stundenplan"
-            android:enabled="false"
             android:icon="@drawable/clock"
             android:title="Stundenplan" />
         <item
