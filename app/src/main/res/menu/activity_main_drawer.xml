@@ -6,11 +6,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_news"
-            android:icon="@drawable/ic_folded_newspaper"
+            android:icon="@drawable/news"
             android:title="News" />
         <item
             android:id="@+id/nav_vertretungsplan"
-            android:icon="@drawable/ic_change"
+            android:icon="@drawable/change"
             android:title="Vertretungsplan" />
         <item
             android:id="@+id/nav_notizen"
@@ -26,15 +26,15 @@
             android:title="Termine" />
         <item
             android:id="@+id/nav_speiseplan"
-            android:icon="@drawable/ic_restaurant"
+            android:icon="@drawable/food"
             android:title="Speiseplan" />
         <item
             android:id="@+id/nav_noten"
-            android:icon="@drawable/ic_noten"
+            android:icon="@drawable/noten"
             android:title="Noten" />
         <item
             android:id="@+id/nav_lehrer"
-            android:icon="@drawable/ic_people_black_24dp"
+            android:icon="@drawable/people"
             android:title="Lehrer" />
         <item
             android:id="@+id/nav_faecher"
@@ -46,7 +46,7 @@
             android:title="Stundenplan" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
+            android:icon="@drawable/settings"
             android:title="Einstellungen" />
     </group>
 </menu>
