@@ -29,7 +29,9 @@ public class Login extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MD5(editText_username.getText().toString()).equals("13d90cae300cf5afb8eb6c659e852df6") && MD5(editText_password.getText().toString()).equals("43ea10765c0d86ee737dc8afc7b726f6")) {
+                String username = md5(editText_username.getText().toString());
+                String password = md5(editText_password.getText().toString());
+                if (username.equals("13d90cae300cf5afb8eb6c659e852df6") && password.equals("43ea10765c0d86ee737dc8afc7b726f6")) {
                     editor.putBoolean("loggedIN", true);
                     editor.apply();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -38,7 +40,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private String MD5(String md5) {
+    private String md5(String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
             byte[] array = md.digest(md5.getBytes());
@@ -49,6 +51,6 @@ public class Login extends AppCompatActivity {
             return sb.toString();
         } catch (java.security.NoSuchAlgorithmException ignored) {
         }
-        return null;
+        return "";
     }
 }
