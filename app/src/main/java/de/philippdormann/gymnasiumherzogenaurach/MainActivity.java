@@ -1,6 +1,7 @@
 package de.philippdormann.gymnasiumherzogenaurach;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static WebView webView;
 
     @SuppressLint("SetJavaScriptEnabled")
-    private static void showInFragmentWebView(final WebView webView, String url, Context context) {
+    private static void showInFragmentWebView(final WebView webView, String url, final Context context) {
         webView.setWebViewClient(new WebViewClient());
         //if (!offline(context)) {
         //webView.clearCache(true);
@@ -68,6 +69,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 webView.loadUrl("file:///android_asset/error.html");
             }
         });
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Wird geladen...");
+        progressDialog.show();
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            }
+        });
+
         webView.loadUrl(url);
     }
 
@@ -76,6 +100,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        }
+        if (webView.canGoBack()) {
+            webView.goBack();
         }
     }
 
@@ -95,6 +122,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (offline(getApplicationContext())) {
+            setTitle(getString(R.string.app_name) + " - Offline");
+        }
+
         SharedPreferences sharedPref = getSharedPreferences("GYMH", MODE_PRIVATE);
         int startseite = sharedPref.getInt("STARTSEITE", 0);
 
@@ -111,16 +142,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.replace(R.id.contentFrame, new Vertretungsplan());
                 break;
             case 2:
-                fragmentTransaction.replace(R.id.contentFrame, new Todo());
+                fragmentTransaction.replace(R.id.contentFrame, new Notizen());
                 break;
             case 3:
-                fragmentTransaction.replace(R.id.contentFrame, new Termine());
+                fragmentTransaction.replace(R.id.contentFrame, new Todo());
                 break;
             case 4:
-                fragmentTransaction.replace(R.id.contentFrame, new Speiseplan());
+                fragmentTransaction.replace(R.id.contentFrame, new Termine());
                 break;
             case 5:
-                fragmentTransaction.replace(R.id.contentFrame, new Noten());
+                fragmentTransaction.replace(R.id.contentFrame, new Speiseplan());
                 break;
             default:
                 fragmentTransaction.replace(R.id.contentFrame, new News());
@@ -159,17 +190,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_speiseplan:
                 fragmentToPlace = new Speiseplan();
                 break;
-            case R.id.nav_noten:
-                fragmentToPlace = new Noten();
-                break;
-            case R.id.nav_lehrer:
-                fragmentToPlace = new Lehrer();
-                break;
-            case R.id.nav_faecher:
-                fragmentToPlace = new Faecher();
-                break;
             case R.id.nav_settings:
                 fragmentToPlace = new Settings();
+                break;
+            case R.id.nav_about:
+                fragmentToPlace = new About();
                 break;
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -179,6 +204,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    static class About extends Fragment {
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.about, container, false);
+            return view;
+        }
     }
 
     static class News extends Fragment {
@@ -197,34 +230,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             View view = inflater.inflate(R.layout.webview, container, false);
             webView = view.findViewById(R.id.webView);
             showInFragmentWebView(webView, "https://philippdormann.de/gymh/todo", getActivity());
-            return view;
-        }
-    }
-
-    static class Lehrer extends Fragment {
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.webview, container, false);
-            webView = view.findViewById(R.id.webView);
-            showInFragmentWebView(webView, "https://philippdormann.de/gymh/lehrer.html", getActivity());
-            return view;
-        }
-    }
-
-    static class Faecher extends Fragment {
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.webview, container, false);
-            webView = view.findViewById(R.id.webView);
-            showInFragmentWebView(webView, "https://philippdormann.de/gymh/faecher.html", getActivity());
-            return view;
-        }
-    }
-
-    static class Noten extends Fragment {
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.noten, container, false);
             return view;
         }
     }
