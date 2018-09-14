@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressLint("SetJavaScriptEnabled")
     private static void showInFragmentWebView(final WebView webView, String url, final Context context) {
         webView.setWebViewClient(new WebViewClient());
-        //if (!offline(context)) {
-        //webView.clearCache(true);
-        //}
+        if (!offline(context)) {
+            webView.clearCache(true);
+        }
         if (offline(context)) {
             webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
@@ -121,10 +121,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        if (offline(getApplicationContext())) {
-            setTitle(getString(R.string.app_name) + " - Offline");
-        }
 
         SharedPreferences sharedPref = getSharedPreferences("GYMH", MODE_PRIVATE);
         int startseite = sharedPref.getInt("STARTSEITE", 0);
@@ -209,8 +205,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static class About extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.about, container, false);
-            return view;
+            return inflater.inflate(R.layout.about, container, false);
         }
     }
 
@@ -219,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
             webView = view.findViewById(R.id.webView);
-            showInFragmentWebView(webView, "https://philippdormann.de/gymh/news/app.php", getActivity());
+            showInFragmentWebView(webView, "https://gymh.philippdormann.de/news/", getActivity());
             return view;
         }
     }
@@ -229,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
             webView = view.findViewById(R.id.webView);
-            showInFragmentWebView(webView, "https://philippdormann.de/gymh/todo", getActivity());
+            showInFragmentWebView(webView, "https://gymh.philippdormann.de/todo/", getActivity());
             return view;
         }
     }
@@ -239,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
             webView = view.findViewById(R.id.webView);
-            showInFragmentWebView(webView, "https://philippdormann.de/gymh/termine/", getActivity());
+            showInFragmentWebView(webView, "https://gymh.philippdormann.de/termine/", getActivity());
             return view;
         }
     }
@@ -252,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             webView = view.findViewById(R.id.webView);
             SharedPreferences sharedPref = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
             String filter = sharedPref.getString("FILTER", "");
-            String vpURL = "https://philippdormann.de/gymh/vertretungsplan/" + "?f=" + filter;
+            String vpURL = "https://gymh.philippdormann.de/vertretungsplan/" + "?f=" + filter;
 
             Button montag = view.findViewById(R.id.montag);
             Button dienstag = view.findViewById(R.id.dienstag);
@@ -265,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mittwoch.setVisibility(View.GONE);
                 donnerstag.setVisibility(View.GONE);
                 freitag.setVisibility(View.GONE);
-                showInFragmentWebView(webView, "https://philippdormann.de/gymh/vertretungsplan/" + "week.php?f=" + filter, getActivity());
+                showInFragmentWebView(webView, "https://gymh.philippdormann.de/vertretungsplan/" + "week.php?f=" + filter, getActivity());
             } else {
                 final String finalVpURL = vpURL;
                 montag.setOnClickListener(new View.OnClickListener() {
@@ -309,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
             webView = view.findViewById(R.id.webView);
-            showInFragmentWebView(webView, "http://philippdormann.de/gymh/mensaplan", getActivity());
+            showInFragmentWebView(webView, "https://gymh.philippdormann.de/mensaplan", getActivity());
             return view;
         }
     }
