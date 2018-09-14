@@ -186,6 +186,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_speiseplan:
                 fragmentToPlace = new Speiseplan();
                 break;
+            case R.id.nav_stundenplan:
+                fragmentToPlace = new Stundenplan();
+                break;
             case R.id.nav_settings:
                 fragmentToPlace = new Settings();
                 break;
@@ -305,6 +308,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             View view = inflater.inflate(R.layout.webview, container, false);
             webView = view.findViewById(R.id.webView);
             showInFragmentWebView(webView, "https://gymh.philippdormann.de/mensaplan", getActivity());
+            return view;
+        }
+    }
+
+    static class Stundenplan extends Fragment {
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.webview, container, false);
+            webView = view.findViewById(R.id.webView);
+            showInFragmentWebView(webView, "https://gymh.philippdormann.de/stundenplan", getActivity());
             return view;
         }
     }

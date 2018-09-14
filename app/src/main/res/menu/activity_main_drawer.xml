@@ -29,6 +29,10 @@
             android:icon="@drawable/food"
             android:title="Speiseplan" />
         <item
+            android:id="@+id/nav_stundenplan"
+            android:icon="@drawable/clock"
+            android:title="Stundenplan" />
+        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings"
             android:title="Einstellungen" />
