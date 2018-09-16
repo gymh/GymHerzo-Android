@@ -16,8 +16,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name" />
         <activity android:name=".Login" />
         <activity
             android:name=".SplashScreenActivity"
@@ -38,7 +37,6 @@
                     android:scheme="gymh" />
             </intent-filter>
         </activity>
-        <activity android:name=".LehrerGSON" />
     </application>
 
 </manifest>
