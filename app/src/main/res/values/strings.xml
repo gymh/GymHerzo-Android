@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="about_app">Diese App wurde erstellt von Philipp Dormann.\n\nDies ist meine W-Seminar Arbeit:\nDas Ziel dieser App ist es, möglichst alle Informationen des Gymnasium Herzogenaurach in einer App zu vereinen und dabei auch noch gut aussehen zu lassen.\n\nDer Gesamte Code dieser App ist öffentlich auf GitHub zugänglich (https://github.com/gymh/GymHerzo-Android).  Einbringungen, Feedback sowie selbst erstellte Erweiterungen oder neue Funktionen sind jederzeit willkommen.\n\nSolltest du einen Fehler in der App finden, so melde diesen bitte per E-Mail (philipp.dormann1@gmail.com) oder direkt auf Github (https://github.com/gymh/GymHerzo-Android/issues).</string>
+    <string name="about_app">Diese App wurde erstellt von Philipp Dormann.\n\nDies ist meine W-Seminar Arbeit:\nDas Ziel dieser App ist es, möglichst alle Informationen des Gymnasium Herzogenaurach in einer App zu vereinen und dabei auch noch gut aussehen zu lassen.\n\nDer gesamte Code dieser App ist öffentlich auf GitHub zugänglich (https://github.com/gymh/GymHerzo-Android).  Einbringungen, Feedback sowie selbst erstellte Erweiterungen oder neue Funktionen sind jederzeit willkommen.\n\nSolltest du einen Fehler in der App finden, so melde diesen bitte per E-Mail (philipp.dormann1@gmail.com) oder direkt auf Github (https://github.com/gymh/GymHerzo-Android/issues).</string>
     <string-array name="startseiten">
         <item>News</item>
         <item>Vertretungsplan</item>

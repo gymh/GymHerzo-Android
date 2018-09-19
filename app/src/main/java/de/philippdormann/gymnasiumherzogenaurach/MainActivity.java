@@ -402,6 +402,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     editor.apply();
                 }
             });
+
             return view;
         }
     }
