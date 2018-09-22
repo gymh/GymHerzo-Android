@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -361,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             SharedPreferences sharedPref = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
             final SharedPreferences.Editor editor = sharedPref.edit();
             final EditText editText_filter = view.findViewById(R.id.editText_filter);
-            editText_filter.setText(sharedPref.getString("FILTER", ""));
+            editText_filter.setText(sharedPref.getString("FILTER", "").toUpperCase());
             editText_filter.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -370,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    editor.putString("FILTER", editText_filter.getText().toString());
+                    editor.putString("FILTER", editText_filter.getText().toString().toUpperCase());
                     editor.apply();
                 }
 
@@ -402,6 +403,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     editor.apply();
                 }
             });
+
+            //new ThemeChooser(view, getActivity());
+
+            //getActivity().getTheme().applyStyle(R.style.Red, true);
+            getActivity().getTheme().applyStyle(R.style.Pink, true);
 
             return view;
         }
