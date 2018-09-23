@@ -208,14 +208,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    static class About extends Fragment {
+    public static class About extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.inflate(R.layout.about, container, false);
         }
     }
 
-    static class News extends Fragment {
+    public static class News extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    static class Todo extends Fragment {
+    public static class Todo extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    static class Termine extends Fragment {
+    public static class Termine extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    static class Vertretungsplan extends Fragment {
+    public static class Vertretungsplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.vertretungsplan, container, false);
@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    static class Speiseplan extends Fragment {
+    public static class Speiseplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    static class Stundenplan extends Fragment {
+    public static class Stundenplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    static class Notizen extends Fragment {
+    public static class Notizen extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.notiz, container, false);
@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    static class Settings extends Fragment {
+    public static class Settings extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.settings, container, false);
