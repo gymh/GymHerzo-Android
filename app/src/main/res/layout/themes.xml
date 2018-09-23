@@ -58,7 +58,7 @@
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/theme_hellblau"
+        android:id="@+id/theme_light_blue"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
@@ -155,6 +155,15 @@
         android:background="#263238"
         android:text="Nachtmodus"
         android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/theme_rainbow"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:text="Regenbogen"
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/theme_standard"

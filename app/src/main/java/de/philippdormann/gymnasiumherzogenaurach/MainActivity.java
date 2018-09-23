@@ -38,6 +38,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @SuppressLint("StaticFieldLeak")
@@ -75,6 +76,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         progressDialog.setMessage("Wird geladen...");
         progressDialog.show();
 
+        SharedPreferences sharedPref = context.getSharedPreferences("GYMH", MODE_PRIVATE);
+        if (url.toLowerCase().contains("?")) {
+            url += "&theme=";
+        } else {
+            url += "?theme=";
+        }
+        url += sharedPref.getString("THEME-NAME", "Standard");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -93,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             }
         });
-
+        Log.d("URL", url);
         webView.loadUrl(url);
     }
 
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sharedPref = getSharedPreferences("GYMH", MODE_PRIVATE);
-        setTheme(sharedPref.getInt("THEME", R.style.AppThemeLight));
+        setTheme(sharedPref.getInt("THEME", R.style.Standard));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -407,140 +415,148 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
 
             // getActivity().getTheme().applyStyle(R.style.Pink, true);
-            Button theme_rot = view.findViewById(R.id.theme_red);
-            theme_rot.setOnClickListener(new View.OnClickListener() {
+            Button theme_red = view.findViewById(R.id.theme_red);
+            theme_red.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Red);
+                    saveTheme(R.style.Red, "Red");
                 }
             });
             Button theme_pink = view.findViewById(R.id.theme_pink);
             theme_pink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Pink);
+                    saveTheme(R.style.Pink, "Pink");
                 }
             });
             Button theme_night = view.findViewById(R.id.theme_night);
             theme_night.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.AppThemeDark);
+                    saveTheme(R.style.Night, "Night");
                 }
             });
             Button theme_blue = view.findViewById(R.id.theme_blue);
             theme_blue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Blue);
+                    saveTheme(R.style.Blue, "Blue");
                 }
             });
             Button theme_green = view.findViewById(R.id.theme_green);
             theme_green.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Green);
+                    saveTheme(R.style.Green, "Green");
                 }
             });
             Button theme_bluegrey = view.findViewById(R.id.theme_bluegrey);
             theme_bluegrey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.BlueGrey);
+                    saveTheme(R.style.BlueGrey, "BlueGrey");
                 }
             });
             Button theme_lightgreen = view.findViewById(R.id.theme_lightgreen);
             theme_lightgreen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.LightGreen);
+                    saveTheme(R.style.LightGreen, "LightGreen");
                 }
             });
             Button theme_purple = view.findViewById(R.id.theme_purple);
             theme_purple.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Purple);
+                    saveTheme(R.style.Purple, "Purple");
                 }
             });
             Button theme_deeppurple = view.findViewById(R.id.theme_deeppurple);
             theme_deeppurple.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.DeepPurple);
+                    saveTheme(R.style.DeepPurple, "DeepPurple");
                 }
             });
             Button theme_indigo = view.findViewById(R.id.theme_indigo);
             theme_indigo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Indigo);
+                    saveTheme(R.style.Indigo, "Indigo");
                 }
             });
-            Button theme_hellblau = view.findViewById(R.id.theme_hellblau);
-            theme_hellblau.setOnClickListener(new View.OnClickListener() {
+            Button theme_lightblue = view.findViewById(R.id.theme_light_blue);
+            theme_lightblue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.LightBlue);
+                    saveTheme(R.style.LightBlue, "LightBlue");
                 }
             });
             Button theme_cyan = view.findViewById(R.id.theme_cyan);
             theme_cyan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Cyan);
+                    saveTheme(R.style.Cyan, "Cyan");
                 }
             });
             Button theme_standard = view.findViewById(R.id.theme_standard);
             theme_standard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.AppThemeLight);
+                    saveTheme(R.style.Standard, "Standard");
                 }
             });
             Button theme_rosegold = view.findViewById(R.id.theme_rosegold);
             theme_rosegold.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Rosegold);
+                    saveTheme(R.style.Rosegold, "Rosegold");
                 }
             });
             Button theme_orange = view.findViewById(R.id.theme_orange);
             theme_orange.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Orange);
+                    saveTheme(R.style.Orange, "Orange");
                 }
             });
             Button theme_amber = view.findViewById(R.id.theme_amber);
             theme_amber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Amber);
+                    saveTheme(R.style.Amber, "Amber");
                 }
             });
             Button theme_teal = view.findViewById(R.id.theme_teal);
             theme_teal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Teal);
+                    saveTheme(R.style.Teal, "Teal");
                 }
             });
             Button theme_sand = view.findViewById(R.id.theme_sand);
             theme_sand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveTheme(R.style.Sand);
+                    saveTheme(R.style.Sand, "Sand");
+                }
+            });
+            Button theme_rainbow = view.findViewById(R.id.theme_rainbow);
+            theme_rainbow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveTheme(R.style.Rainbow, "Rainbow");
                 }
             });
 
             return view;
         }
 
-        private void saveTheme(int theme) {
+        private void saveTheme(int theme, String themeName) {
             SharedPreferences sharedPref = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
             final SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt("THEME", theme);
+            editor.putString("THEME-NAME", themeName);
             editor.apply();
             if (sharedPref.getInt("THEME", 1) == theme) {
                 restart();
