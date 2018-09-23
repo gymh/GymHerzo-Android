@@ -1,21 +1,115 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#90A4AE</item>
         <item name="colorPrimaryDark">#90A4AE</item>
         <item name="colorAccent">#00B0FF</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
     </style>
 
-    <style name="Red" parent="AppTheme">
+    <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#263238</item>
+        <item name="colorPrimaryDark">#263238</item>
+        <item name="colorAccent">#FFAB00</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
+    </style>
+
+    <style name="Red" parent="AppThemeLight">
         <item name="colorPrimary">#f44336</item>
         <item name="colorPrimaryDark">#f44336</item>
-        <item name="colorAccent">#00B0FF</item>
+        <item name="colorAccent">#f44336</item>
     </style>
 
-    <style name="Pink" parent="AppTheme">
+    <style name="Pink" parent="AppThemeLight">
         <item name="colorPrimary">#E91E63</item>
         <item name="colorPrimaryDark">#E91E63</item>
-        <item name="colorAccent">#00E5FF</item>
+        <item name="colorAccent">#E91E63</item>
+    </style>
+
+    <style name="DeepPurple" parent="AppThemeLight">
+        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimaryDark">#673AB7</item>
+        <item name="colorAccent">#673AB7</item>
+    </style>
+
+    <style name="Purple" parent="AppThemeLight">
+        <item name="colorPrimary">#9C27B0</item>
+        <item name="colorPrimaryDark">#9C27B0</item>
+        <item name="colorAccent">#9C27B0</item>
+    </style>
+
+    <style name="Indigo" parent="AppThemeLight">
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">#3F51B5</item>
+        <item name="colorAccent">#3F51B5</item>
+    </style>
+
+    <style name="Blue" parent="AppThemeLight">
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#2196F3</item>
+        <item name="colorAccent">#2196F3</item>
+    </style>
+
+    <style name="LightBlue" parent="AppThemeLight">
+        <item name="colorPrimary">#03A9F4</item>
+        <item name="colorPrimaryDark">#03A9F4</item>
+        <item name="colorAccent">#03A9F4</item>
+    </style>
+
+    <style name="Cyan" parent="AppThemeLight">
+        <item name="colorPrimary">#00BCD4</item>
+        <item name="colorPrimaryDark">#00BCD4</item>
+        <item name="colorAccent">#00BCD4</item>
+    </style>
+
+    <style name="Teal" parent="AppThemeLight">
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#009688</item>
+        <item name="colorAccent">#009688</item>
+    </style>
+
+    <style name="Green" parent="AppThemeLight">
+        <item name="colorPrimary">#4CAF50</item>
+        <item name="colorPrimaryDark">#4CAF50</item>
+        <item name="colorAccent">#4CAF50</item>
+    </style>
+
+    <style name="LightGreen" parent="AppThemeLight">
+        <item name="colorPrimary">#8BC34A</item>
+        <item name="colorPrimaryDark">#8BC34A</item>
+        <item name="colorAccent">#8BC34A</item>
+    </style>
+
+    <style name="Amber" parent="AppThemeLight">
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryDark">#FFC107</item>
+        <item name="colorAccent">#FFC107</item>
+    </style>
+
+    <style name="Orange" parent="AppThemeLight">
+        <item name="colorPrimary">#FF9800</item>
+        <item name="colorPrimaryDark">#FF9800</item>
+        <item name="colorAccent">#FF9800</item>
+    </style>
+
+    <style name="BlueGrey" parent="AppThemeLight">
+        <item name="colorPrimary">#607D8B</item>
+        <item name="colorPrimaryDark">#607D8B</item>
+        <item name="colorAccent">#607D8B</item>
+    </style>
+
+    <style name="Rosegold" parent="AppThemeLight">
+        <item name="colorPrimary">#E8C4C0</item>
+        <item name="colorPrimaryDark">#E8C4C0</item>
+        <item name="colorAccent">#E8C4C0</item>
+    </style>
+
+    <style name="Sand" parent="AppThemeLight">
+        <item name="colorPrimary">#E3C499</item>
+        <item name="colorPrimaryDark">#E3C499</item>
+        <item name="colorAccent">#E3C499</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

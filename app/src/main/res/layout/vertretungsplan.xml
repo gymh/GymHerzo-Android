@@ -10,6 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/dienstag"
         android:layout_toStartOf="@+id/dienstag"
+        android:background="@android:color/transparent"
         android:text="MO" />
 
     <Button
@@ -19,6 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/mittwoch"
         android:layout_toStartOf="@+id/mittwoch"
+        android:background="@android:color/transparent"
         android:text="DI" />
 
     <Button
@@ -27,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
         android:text="MI" />
 
     <Button
@@ -36,6 +39,7 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/mittwoch"
         android:layout_toRightOf="@+id/mittwoch"
+        android:background="@android:color/transparent"
         android:text="DO" />
 
     <Button
@@ -45,6 +49,7 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/donnerstag"
         android:layout_toRightOf="@+id/donnerstag"
+        android:background="@android:color/transparent"
         android:text="FR" />
 
     <WebView

@@ -66,11 +66,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bitte wähle aus den Designs aus. Dabei kann es kann sein, dass die App neustartet."
+            android:text="Bitte wähle aus den Designs aus. Die App wird sich dann neu öffnen."
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <include layout="@layout/themes" />
-
-
     </LinearLayout>
 </ScrollView>
