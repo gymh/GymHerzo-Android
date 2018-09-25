@@ -485,13 +485,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     saveTheme(R.style.Indigo, "Indigo");
                 }
             });
-            Button theme_lightblue = view.findViewById(R.id.theme_light_blue);
-            theme_lightblue.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    saveTheme(R.style.LightBlue, "LightBlue");
-                }
-            });
             Button theme_cyan = view.findViewById(R.id.theme_cyan);
             theme_cyan.setOnClickListener(new View.OnClickListener() {
                 @Override

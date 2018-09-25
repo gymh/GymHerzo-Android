@@ -52,12 +52,6 @@
         <item name="colorAccent">#2196F3</item>
     </style>
 
-    <style name="LightBlue" parent="Standard">
-        <item name="colorPrimary">#03A9F4</item>
-        <item name="colorPrimaryDark">#03A9F4</item>
-        <item name="colorAccent">#03A9F4</item>
-    </style>
-
     <style name="Cyan" parent="Standard">
         <item name="colorPrimary">#00BCD4</item>
         <item name="colorPrimaryDark">#00BCD4</item>
