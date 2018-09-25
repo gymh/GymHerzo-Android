@@ -18,7 +18,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#E91E63"
-        android:text="Pink"
+        android:text="Magenta"
         android:textColor="#ffffff" />
 
     <Button
@@ -27,7 +27,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#9C27B0"
-        android:text="lila"
+        android:text="Violett"
         android:textColor="#ffffff" />
 
     <Button
@@ -45,7 +45,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#3F51B5"
-        android:text="Indigo"
+        android:text="Ultramarin"
         android:textColor="#ffffff" />
 
     <Button
@@ -58,21 +58,12 @@
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/theme_light_blue"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:background="#03A9F4"
-        android:text="Hellblau"
-        android:textColor="#ffffff" />
-
-    <Button
         android:id="@+id/theme_cyan"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#00BCD4"
-        android:text="Cyan"
+        android:text="Türkis"
         android:textColor="#ffffff" />
 
     <Button
@@ -99,7 +90,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#8BC34A"
-        android:text="Hellgrün"
+        android:text="Gelbgrün"
         android:textColor="#ffffff" />
 
     <Button
@@ -108,7 +99,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#FFC107"
-        android:text="Bernstein"
+        android:text="Gelb"
         android:textColor="#ffffff" />
 
     <Button
@@ -144,7 +135,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#E8C4C0"
-        android:text="Roségold"
+        android:text="Rosa"
         android:textColor="#000000" />
 
     <Button
