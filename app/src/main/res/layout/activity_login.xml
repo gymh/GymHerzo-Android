@@ -42,4 +42,15 @@
         android:layout_height="wrap_content"
         android:text="Anmelden" />
 
+    <TextView
+        android:id="@+id/textViewWrongLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Falscher Login"
+        android:textAlignment="center"
+        android:textColor="#ff0000"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
 </LinearLayout>
