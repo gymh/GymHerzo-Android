@@ -81,19 +81,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Durch das Anschalten von Werbung unterstützt du mich massiv bei der Entwicklung dieser App.\nKleine Spenden sind auch hilfreich." />
+            android:text="Diese App programmiere ich komplett in meiner Freizeit.\nSpenden motivieren mich bei der Entwicklung und helfen mir, Entwicklungskosten zu decken.\nÜber eine kleine Spende würde ich mich sehr freuen!" />
 
         <Button
             android:id="@+id/button_spenden"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Spenden" />
-
-        <Switch
-            android:id="@+id/switchAds"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Werbung anzeigen" />
 
         <TextView
             android:layout_width="match_parent"

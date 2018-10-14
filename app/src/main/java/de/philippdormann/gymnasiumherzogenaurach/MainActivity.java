@@ -24,7 +24,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -46,6 +45,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressLint("StaticFieldLeak")
     private static WebView webView;
+    Context context;
+
+    @SuppressLint("SetJavaScriptEnabled")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPref = getSharedPreferences("GYMH", MODE_PRIVATE);
+        setTheme(sharedPref.getInt("THEME", R.style.Standard));
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        context = this;
+
+        int startseite = sharedPref.getInt("STARTSEITE", 0);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(startseite).setChecked(true);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        switch (startseite) {
+            case 0:
+                fragmentTransaction.replace(R.id.contentFrame, new News());
+                break;
+            case 1:
+                fragmentTransaction.replace(R.id.contentFrame, new Vertretungsplan());
+                break;
+            case 2:
+                fragmentTransaction.replace(R.id.contentFrame, new Notizen());
+                break;
+            case 3:
+                fragmentTransaction.replace(R.id.contentFrame, new Todo());
+                break;
+            case 4:
+                fragmentTransaction.replace(R.id.contentFrame, new Termine());
+                break;
+            case 5:
+                fragmentTransaction.replace(R.id.contentFrame, new Speiseplan());
+                break;
+            default:
+                fragmentTransaction.replace(R.id.contentFrame, new News());
+                break;
+        }
+        fragmentTransaction.commit();
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     private static void showInFragmentWebView(final WebView webView, String url, final Context context) {
@@ -89,7 +139,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
+                if (url.toLowerCase().contains(".pdf".toLowerCase())) {
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    customTabsIntent.launchUrl(view.getContext(), Uri.parse(url));
+                } else if (url.toLowerCase().contains("play.google".toLowerCase())) {
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    customTabsIntent.launchUrl(view.getContext(), Uri.parse(url));
+                } else {
+                    view.loadUrl(url);
+                }
                 return true;
             }
 
@@ -125,63 +185,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         assert connectivityManager != null;
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo == null || !activeNetworkInfo.isConnected();
-    }
-
-    @SuppressLint("SetJavaScriptEnabled")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPref = getSharedPreferences("GYMH", MODE_PRIVATE);
-        setTheme(sharedPref.getInt("THEME", R.style.Standard));
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        int startseite = sharedPref.getInt("STARTSEITE", 0);
-
-        if (sharedPref.getBoolean("ADS", false)) {
-            RelativeLayout werbung = findViewById(R.id.layout_werbung);
-            werbung.setVisibility(View.VISIBLE);
-        } else {
-            RelativeLayout werbung = findViewById(R.id.layout_werbung);
-            werbung.setVisibility(View.GONE);
-        }
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(startseite).setChecked(true);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        switch (startseite) {
-            case 0:
-                fragmentTransaction.replace(R.id.contentFrame, new News());
-                break;
-            case 1:
-                fragmentTransaction.replace(R.id.contentFrame, new Vertretungsplan());
-                break;
-            case 2:
-                fragmentTransaction.replace(R.id.contentFrame, new Notizen());
-                break;
-            case 3:
-                fragmentTransaction.replace(R.id.contentFrame, new Todo());
-                break;
-            case 4:
-                fragmentTransaction.replace(R.id.contentFrame, new Termine());
-                break;
-            case 5:
-                fragmentTransaction.replace(R.id.contentFrame, new Speiseplan());
-                break;
-            default:
-                fragmentTransaction.replace(R.id.contentFrame, new News());
-                break;
-        }
-        fragmentTransaction.commit();
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -445,18 +448,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     editor.putBoolean("LEHRER-FULLNAME", isChecked);
                     editor.apply();
-                }
-            });
-            Switch switchAds = view.findViewById(R.id.switchAds);
-            switchAds.setChecked(sharedPref.getBoolean("ADS", false));
-            switchAds.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    editor.putBoolean("ADS", isChecked);
-                    editor.apply();
-                    Intent i = getActivity().getPackageManager().getLaunchIntentForPackage(getActivity().getPackageName());
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i);
                 }
             });
 
