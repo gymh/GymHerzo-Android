@@ -292,7 +292,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mittwoch.setVisibility(View.GONE);
                 donnerstag.setVisibility(View.GONE);
                 freitag.setVisibility(View.GONE);
-                showInFragmentWebView(webView, "https://gymh.philippdormann.de/vertretungsplan/" + "week.php?f=" + filter, getActivity());
+                String vpWeekURL = "https://gymh.philippdormann.de/vertretungsplan/" + "week.php?f=" + filter;
+                if (shouldShowLehrerFullname) {
+                    vpWeekURL += "&display-lehrer-full";
+                }
+                showInFragmentWebView(webView, vpWeekURL, getActivity());
             } else {
                 final String finalVpURL = vpURL;
                 montag.setOnClickListener(new View.OnClickListener() {
