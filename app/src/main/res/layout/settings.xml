@@ -36,6 +36,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:text="Lehrer-Kürzel"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <Switch
+            android:id="@+id/switchLehrerDisplayFull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vollständige Lehrernamen anzeigen" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Wochenübersicht"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -57,6 +70,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/startseiten" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Entwicklung unterstützen"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Durch das Anschalten von Werbung unterstützt du mich massiv bei der Entwicklung dieser App.\nKleine Spenden sind auch hilfreich." />
+
+        <Button
+            android:id="@+id/button_spenden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spenden" />
+
+        <Switch
+            android:id="@+id/switchAds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Werbung anzeigen" />
 
         <TextView
             android:layout_width="match_parent"

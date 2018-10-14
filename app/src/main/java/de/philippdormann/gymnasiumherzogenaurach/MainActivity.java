@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -32,6 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -135,6 +138,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         int startseite = sharedPref.getInt("STARTSEITE", 0);
+
+        if (sharedPref.getBoolean("ADS", false)) {
+            RelativeLayout werbung = findViewById(R.id.layout_werbung);
+            werbung.setVisibility(View.VISIBLE);
+        } else {
+            RelativeLayout werbung = findViewById(R.id.layout_werbung);
+            werbung.setVisibility(View.GONE);
+        }
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -261,7 +272,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             webView = view.findViewById(R.id.webView);
             SharedPreferences sharedPref = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
             String filter = sharedPref.getString("FILTER", "");
+            Boolean shouldShowLehrerFullname = sharedPref.getBoolean("LEHRER-FULLNAME", false);
             String vpURL = "https://gymh.philippdormann.de/vertretungsplan/" + "?f=" + filter;
+            if (shouldShowLehrerFullname) {
+                vpURL += "&display-lehrer-full";
+            }
 
             Button montag = view.findViewById(R.id.montag);
             Button dienstag = view.findViewById(R.id.dienstag);
@@ -274,8 +289,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mittwoch.setVisibility(View.GONE);
                 donnerstag.setVisibility(View.GONE);
                 freitag.setVisibility(View.GONE);
-                showInFragmentWebView(webView,
-                        "https://gymh.philippdormann.de/vertretungsplan/" + "week.php?f=" + filter, getActivity());
+                showInFragmentWebView(webView, "https://gymh.philippdormann.de/vertretungsplan/" + "week.php?f=" + filter, getActivity());
             } else {
                 final String finalVpURL = vpURL;
                 montag.setOnClickListener(new View.OnClickListener() {
@@ -367,7 +381,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static class Settings extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.settings, container, false);
+            final View view = inflater.inflate(R.layout.settings, container, false);
+
+            Button button = view.findViewById(R.id.button_spenden);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    customTabsIntent.launchUrl(getActivity(), Uri.parse("http://paypal.me/philippdormann"));
+                }
+            });
 
             SharedPreferences sharedPref = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
             final SharedPreferences.Editor editor = sharedPref.edit();
@@ -414,7 +438,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
 
-            // getActivity().getTheme().applyStyle(R.style.Pink, true);
+            Switch switchLehrerDisplayFull = view.findViewById(R.id.switchLehrerDisplayFull);
+            switchLehrerDisplayFull.setChecked(sharedPref.getBoolean("LEHRER-FULLNAME", false));
+            switchLehrerDisplayFull.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    editor.putBoolean("LEHRER-FULLNAME", isChecked);
+                    editor.apply();
+                }
+            });
+            Switch switchAds = view.findViewById(R.id.switchAds);
+            switchAds.setChecked(sharedPref.getBoolean("ADS", false));
+            switchAds.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    editor.putBoolean("ADS", isChecked);
+                    editor.apply();
+                    Intent i = getActivity().getPackageManager().getLaunchIntentForPackage(getActivity().getPackageName());
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
+            });
+
             Button theme_red = view.findViewById(R.id.theme_red);
             theme_red.setOnClickListener(new View.OnClickListener() {
                 @Override
