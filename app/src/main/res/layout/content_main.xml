@@ -8,24 +8,9 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <RelativeLayout
-        android:id="@+id/layout_werbung"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="[WERBUNG]"
-            android:textAlignment="center" />
-    </RelativeLayout>
-
     <FrameLayout
         android:id="@+id/contentFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/layout_werbung" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
