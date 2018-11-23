@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
         final SharedPreferences.Editor editor = sharedPref.edit();
 
         if (sharedPref.getBoolean("loggedIN", false)) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), Main.class));
         }
 
         TextWatcher textWatcher = new TextWatcher() {
@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity {
                 if ((username.equals("13d90cae300cf5afb8eb6c659e852df6") || username.equals("104c5d6cf12cd8ca8716e361b92151aa")) && password.equals("43ea10765c0d86ee737dc8afc7b726f6")) {
                     editor.putBoolean("loggedIN", true);
                     editor.apply();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), Main.class));
                 } else {
                     textView.setVisibility(View.VISIBLE);
                 }

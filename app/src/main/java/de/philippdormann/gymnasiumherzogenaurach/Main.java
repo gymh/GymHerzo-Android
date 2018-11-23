@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,12 +39,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-@SuppressWarnings("ALL")
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @SuppressLint("StaticFieldLeak")
     private static WebView webView;
-    Context context;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -57,8 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        context = this;
+        Context context = this;
 
         int startseite = sharedPref.getInt("STARTSEITE", 0);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -131,12 +127,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         progressDialog.show();
 
         SharedPreferences sharedPref = context.getSharedPreferences("GYMH", MODE_PRIVATE);
-        if (url.toLowerCase().contains("?")) {
-            url += "&theme=";
-        } else {
-            url += "?theme=";
-        }
-        url += sharedPref.getString("THEME-NAME", "Standard");
+        String themeName = sharedPref.getString("THEME-NAME", "Standard");
+        Helper helper = new Helper();
+        url = helper.addParameterToUrl(url, "theme", themeName);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -161,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             }
         });
-        Log.d("URL", url);
         webView.loadUrl(url);
     }
 
@@ -227,14 +219,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public static class About extends Fragment {
+    static class About extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.inflate(R.layout.about, container, false);
         }
     }
 
-    public static class News extends Fragment {
+    static class News extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -244,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Todo extends Fragment {
+    static class Todo extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -254,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Termine extends Fragment {
+    static class Termine extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -264,18 +256,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Vertretungsplan extends Fragment {
+    static class Vertretungsplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            Helper helper = new Helper();
             View view = inflater.inflate(R.layout.vertretungsplan, container, false);
-            Log.d("LOGGER", "loadVP");
             webView = view.findViewById(R.id.webView);
-            SharedPreferences sharedPref = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
-            String filter = sharedPref.getString("FILTER", "");
-            Boolean shouldShowLehrerFullname = sharedPref.getBoolean("LEHRER-FULLNAME", false);
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("GYMH", MODE_PRIVATE);
+            String filter = sharedPreferences.getString("FILTER", "");
+            Boolean shouldShowLehrerFullname = sharedPreferences.getBoolean("LEHRER-FULLNAME", false);
             String vpURL = "https://gymh.philippdormann.de/vertretungsplan/" + "?f=" + filter;
             if (shouldShowLehrerFullname) {
-                vpURL += "&display-lehrer-full";
+                vpURL = helper.addParameterToUrl(vpURL, "display-lehrer-full", "");
             }
 
             Button montag = view.findViewById(R.id.montag);
@@ -283,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Button mittwoch = view.findViewById(R.id.mittwoch);
             Button donnerstag = view.findViewById(R.id.donnerstag);
             Button freitag = view.findViewById(R.id.freitag);
-            if (sharedPref.getBoolean("WOCHENANSICHT", false)) {
+            if (sharedPreferences.getBoolean("WOCHENANSICHT", false)) {
                 montag.setVisibility(View.GONE);
                 dienstag.setVisibility(View.GONE);
                 mittwoch.setVisibility(View.GONE);
@@ -291,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 freitag.setVisibility(View.GONE);
                 String vpWeekURL = "https://gymh.philippdormann.de/vertretungsplan/" + "week.php?f=" + filter;
                 if (shouldShowLehrerFullname) {
-                    vpWeekURL += "&display-lehrer-full";
+                    vpURL = helper.addParameterToUrl(vpURL, "display-lehrer-full", "");
                 }
                 showInFragmentWebView(webView, vpWeekURL, getActivity());
             } else {
@@ -332,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Speiseplan extends Fragment {
+    static class Speiseplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -342,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Stundenplan extends Fragment {
+    static class Stundenplan extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.webview, container, false);
@@ -352,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Notizen extends Fragment {
+    static class Notizen extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.notiz, container, false);
@@ -382,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static class Settings extends Fragment {
+    static class Settings extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             final View view = inflater.inflate(R.layout.settings, container, false);
@@ -594,7 +586,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         void restart() {
-            getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().startActivity(new Intent(getActivity(), Main.class));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 getActivity().finishAffinity();
             }
