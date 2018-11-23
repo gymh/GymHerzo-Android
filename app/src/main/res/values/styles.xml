@@ -6,6 +6,7 @@
         <item name="colorAccent">#00B0FF</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
+        <item name="nav_bg">@drawable/nav_bg_default</item>
     </style>
 
     <style name="Night" parent="Theme.AppCompat.NoActionBar">
@@ -14,101 +15,118 @@
         <item name="colorAccent">#FFAB00</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
+        <item name="nav_bg">@drawable/nav_bg_night</item>
     </style>
 
     <style name="Red" parent="Standard">
         <item name="colorPrimary">#f44336</item>
         <item name="colorPrimaryDark">#f44336</item>
         <item name="colorAccent">#f44336</item>
+        <item name="nav_bg">@drawable/nav_bg_red</item>
     </style>
 
     <style name="Pink" parent="Standard">
         <item name="colorPrimary">#E91E63</item>
         <item name="colorPrimaryDark">#E91E63</item>
         <item name="colorAccent">#E91E63</item>
+        <item name="nav_bg">@drawable/nav_bg_pink</item>
     </style>
 
     <style name="DeepPurple" parent="Standard">
         <item name="colorPrimary">#673AB7</item>
         <item name="colorPrimaryDark">#673AB7</item>
         <item name="colorAccent">#673AB7</item>
+        <item name="nav_bg">@drawable/nav_bg_deep_purple</item>
     </style>
 
     <style name="Purple" parent="Standard">
         <item name="colorPrimary">#9C27B0</item>
         <item name="colorPrimaryDark">#9C27B0</item>
         <item name="colorAccent">#9C27B0</item>
+        <item name="nav_bg">@drawable/nav_bg_purple</item>
     </style>
 
     <style name="Indigo" parent="Standard">
         <item name="colorPrimary">#3F51B5</item>
         <item name="colorPrimaryDark">#3F51B5</item>
         <item name="colorAccent">#3F51B5</item>
+        <item name="nav_bg">@drawable/nav_bg_indigo</item>
     </style>
 
     <style name="Blue" parent="Standard">
         <item name="colorPrimary">#2196F3</item>
         <item name="colorPrimaryDark">#2196F3</item>
         <item name="colorAccent">#2196F3</item>
+        <item name="nav_bg">@drawable/nav_bg_blue</item>
     </style>
 
     <style name="Cyan" parent="Standard">
         <item name="colorPrimary">#00BCD4</item>
         <item name="colorPrimaryDark">#00BCD4</item>
         <item name="colorAccent">#00BCD4</item>
+        <item name="nav_bg">@drawable/nav_bg_cyan</item>
     </style>
 
     <style name="Teal" parent="Standard">
         <item name="colorPrimary">#009688</item>
         <item name="colorPrimaryDark">#009688</item>
         <item name="colorAccent">#009688</item>
+        <item name="nav_bg">@drawable/nav_bg_teal</item>
     </style>
 
     <style name="Green" parent="Standard">
         <item name="colorPrimary">#4CAF50</item>
         <item name="colorPrimaryDark">#4CAF50</item>
         <item name="colorAccent">#4CAF50</item>
+        <item name="nav_bg">@drawable/nav_bg_green</item>
     </style>
 
     <style name="LightGreen" parent="Standard">
         <item name="colorPrimary">#8BC34A</item>
         <item name="colorPrimaryDark">#8BC34A</item>
         <item name="colorAccent">#8BC34A</item>
+        <item name="nav_bg">@drawable/nav_bg_light_green</item>
     </style>
 
     <style name="Amber" parent="Standard">
         <item name="colorPrimary">#FFC107</item>
         <item name="colorPrimaryDark">#FFC107</item>
         <item name="colorAccent">#FFC107</item>
+        <item name="nav_bg">@drawable/nav_bg_amber</item>
     </style>
 
     <style name="Orange" parent="Standard">
         <item name="colorPrimary">#FF9800</item>
         <item name="colorPrimaryDark">#FF9800</item>
         <item name="colorAccent">#FF9800</item>
+        <item name="nav_bg">@drawable/nav_bg_orange</item>
     </style>
 
     <style name="BlueGrey" parent="Standard">
         <item name="colorPrimary">#607D8B</item>
         <item name="colorPrimaryDark">#607D8B</item>
         <item name="colorAccent">#607D8B</item>
+        <item name="nav_bg">@drawable/nav_bg_blue_grey</item>
     </style>
 
     <style name="Rosegold" parent="Standard">
         <item name="colorPrimary">#E8C4C0</item>
         <item name="colorPrimaryDark">#E8C4C0</item>
         <item name="colorAccent">#E8C4C0</item>
+        <item name="nav_bg">@drawable/nav_bg_rosegold</item>
     </style>
 
     <style name="Sand" parent="Standard">
         <item name="colorPrimary">#E3C499</item>
         <item name="colorPrimaryDark">#E3C499</item>
         <item name="colorAccent">#E3C499</item>
+        <item name="nav_bg">@drawable/nav_bg_sand</item>
     </style>
 
     <style name="Rainbow" parent="Standard">
         <item name="colorPrimary">#BDBDBD</item>
         <item name="colorPrimaryDark">#BDBDBD</item>
+        <item name="nav_bg">@drawable/nav_bg_rainbow</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

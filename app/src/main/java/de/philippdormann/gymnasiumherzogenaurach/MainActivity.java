@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         context = this;
 
         int startseite = sharedPref.getInt("STARTSEITE", 0);
@@ -139,11 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.toLowerCase().contains(".pdf".toLowerCase())) {
-                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                    CustomTabsIntent customTabsIntent = builder.build();
-                    customTabsIntent.launchUrl(view.getContext(), Uri.parse(url));
-                } else if (url.toLowerCase().contains("play.google".toLowerCase())) {
+                if ((url.toLowerCase().contains(".pdf".toLowerCase())) || (url.toLowerCase().contains("play.google".toLowerCase()))) {
                     CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                     CustomTabsIntent customTabsIntent = builder.build();
                     customTabsIntent.launchUrl(view.getContext(), Uri.parse(url));
