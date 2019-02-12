@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:padding="10dp">
@@ -34,7 +35,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Passwort"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/button_login"
@@ -46,7 +48,7 @@
         android:id="@+id/textViewWrongLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="monospace"
+        app:fontFamily="monospace"
         android:text="Falscher Login"
         android:textAlignment="center"
         android:textColor="#ff0000"
