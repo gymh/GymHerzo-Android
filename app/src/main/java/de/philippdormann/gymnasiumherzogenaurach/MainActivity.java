@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (startseite) {
             case 0:
-                fragmentTransaction.replace(R.id.contentFrame, new News());
+//                fragmentTransaction.replace(R.id.contentFrame, new News());
+                fragmentTransaction.replace(R.id.contentFrame, new NewNews());
                 break;
             case 1:
                 fragmentTransaction.replace(R.id.contentFrame, new Vertretungsplan());
@@ -194,7 +195,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment fragmentToPlace = new News();
         switch (id) {
             case R.id.nav_news:
-                fragmentToPlace = new News();
+//                fragmentToPlace = new News();
+                fragmentToPlace = new NewNews();
                 break;
             case R.id.nav_vertretungsplan:
                 fragmentToPlace = new Vertretungsplan();
