@@ -17,6 +17,8 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import tcking.github.com.giraffeplayer2.GiraffePlayer
+import tcking.github.com.giraffeplayer2.VideoInfo
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var context: Context? = null
@@ -77,6 +79,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_stundenplan -> fragmentToPlace = Stundenplan()
             R.id.nav_settings -> fragmentToPlace = Settings()
             R.id.nav_about -> fragmentToPlace = About()
+            R.id.nav_gymag-> GiraffePlayer.play(applicationContext, VideoInfo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"))
         }
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
