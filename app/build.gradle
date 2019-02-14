@@ -30,6 +30,7 @@ dependencies {
     implementation 'androidx.browser:browser:1.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.tcking:giraffeplayer2:0.1.25-lazyLoad'
+    implementation "ru.noties:markwon:2.0.1"
 }
 repositories {
     mavenCentral()
