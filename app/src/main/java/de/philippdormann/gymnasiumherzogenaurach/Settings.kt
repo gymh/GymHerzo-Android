@@ -3,7 +3,6 @@ package de.philippdormann.gymnasiumherzogenaurach
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -122,8 +121,6 @@ class Settings : Fragment() {
 
     private fun restart() {
         activity!!.startActivity(Intent(activity, MainActivity::class.java))
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            activity!!.finishAffinity()
-        }
+        activity!!.finishAffinity()
     }
 }
