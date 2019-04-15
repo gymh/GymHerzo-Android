@@ -14,13 +14,16 @@ class Gymag : Fragment() {
         val view = inflater.inflate(R.layout.gymag, container, false)
 
         val youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
+        youTubePlayerView.isFullScreen()
         lifecycle.addObserver(youTubePlayerView)
 
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo("WM6BjT2gqv8", 0F)
+                youTubePlayer.cueVideo("WM6BjT2gqv8", 0F)
             }
         })
+
+        youTubePlayerView.toggleFullScreen()
 
         return view
     }
