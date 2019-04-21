@@ -1,30 +1,17 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import android.util.Log
+import java.net.URL
 
-class Gymag : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.gymag, container, false)
+class Gymag : AppCompatActivity() {
 
-        val youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
-        youTubePlayerView.isFullScreen()
-        lifecycle.addObserver(youTubePlayerView)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_gymag)
 
-        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.cueVideo("WM6BjT2gqv8", 0F)
-            }
-        })
-
-        youTubePlayerView.toggleFullScreen()
-
-        return view
+        //var result = URL("https://google.com").readText()
+        //Log.d("LOGGER", result)
     }
 }

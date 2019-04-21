@@ -2,6 +2,7 @@ package de.philippdormann.gymnasiumherzogenaurach
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_stundenplan -> fragmentToPlace = Stundenplan()
             R.id.nav_settings -> fragmentToPlace = Settings()
             R.id.nav_about -> fragmentToPlace = About()
-            R.id.nav_gymag-> fragmentToPlace = Gymag()
+            R.id.nav_gymag-> startActivity(Intent(applicationContext, Gymag::class.java))
         }
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
