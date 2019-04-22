@@ -17,6 +17,9 @@
 - Speiseplan
 - Stundenplan
 
+## tools for this project
+- [latest Canary Version of Android Studio](https://developer.android.com/studio/preview)
+
 ## soon/ wishlist
 - Gymag Streaming
 - AK News
