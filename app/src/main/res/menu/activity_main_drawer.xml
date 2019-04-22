@@ -7,42 +7,42 @@
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/news"
-            android:title="News" />
+            android:title="@string/news__title" />
         <item
             android:id="@+id/nav_vertretungsplan"
             android:icon="@drawable/change"
-            android:title="Vertretungsplan" />
+            android:title="@string/vertretungsplan__title" />
         <item
             android:id="@+id/nav_notizen"
             android:icon="@drawable/edit"
-            android:title="Notizen" />
+            android:title="@string/notizen__title" />
         <item
             android:id="@+id/nav_todo"
             android:icon="@drawable/todo"
-            android:title="ToDo" />
+            android:title="@string/todo__title" />
         <item
             android:id="@+id/nav_termine"
             android:icon="@drawable/calendar"
-            android:title="Termine" />
+            android:title="@string/termine__title" />
         <item
             android:id="@+id/nav_speiseplan"
             android:icon="@drawable/food"
-            android:title="Speiseplan" />
+            android:title="@string/speiseplan__title" />
         <item
             android:id="@+id/nav_stundenplan"
             android:icon="@drawable/clock"
-            android:title="Stundenplan" />
+            android:title="@string/stundenplan__title" />
         <item
             android:id="@+id/nav_gymag"
             android:icon="@drawable/movie"
-            android:title="Gymag" />
+            android:title="@string/gymag__title" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings"
-            android:title="Einstellungen" />
+            android:title="@string/settings__title" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/info"
-            android:title="Über die  App" />
+            android:title="@string/about__title" />
     </group>
 </menu>

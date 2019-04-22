@@ -1,5 +1,6 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_stundenplan -> fragmentToPlace = Stundenplan()
             R.id.nav_settings -> fragmentToPlace = Settings()
             R.id.nav_about -> fragmentToPlace = About()
-            R.id.nav_gymag-> startActivity(Intent(applicationContext, Gymag::class.java))
+            R.id.nav_gymag -> startActivity(Intent(applicationContext, Gymag::class.java))
         }
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     companion object {
         var webView: WebView? = null
+        @SuppressLint("SetJavaScriptEnabled")
         fun showInFragmentWebView(webView: WebView, url: String, context: Context?) {
             var url = url
             webView.webViewClient = WebViewClient()

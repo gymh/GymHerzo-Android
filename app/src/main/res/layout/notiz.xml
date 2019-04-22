@@ -9,14 +9,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Notizen"
+        android:text="@string/notizen__title"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hinweis: Deine Notiz wird automatisch gespeichert"
+        android:text="@string/notizen__info_autosave"
         android:textAlignment="center" />
 
     <EditText
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Gib hier deine Notiz ein"
+        android:hint="@string/notizen__input_placeholder"
         android:inputType="textMultiLine"
         tools:ignore="Autofill" />
 </LinearLayout>

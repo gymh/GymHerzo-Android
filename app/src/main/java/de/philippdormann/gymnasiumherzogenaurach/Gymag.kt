@@ -1,9 +1,7 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import java.net.URL
+import androidx.appcompat.app.AppCompatActivity
 
 class Gymag : AppCompatActivity() {
 

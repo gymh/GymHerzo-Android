@@ -12,13 +12,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:contentDescription="info"
+            android:contentDescription="@string/about__img_description"
             android:src="@drawable/info_outline" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Über diese App"
+            android:text="@string/about__title"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="30sp" />

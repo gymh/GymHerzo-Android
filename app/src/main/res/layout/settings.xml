@@ -13,14 +13,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Einstellungen"
+            android:text="@string/settings__title"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vertretungsplan-Filter"
+            android:text="@string/settings__vertretungsplan_filter"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <EditText
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Klasse/ Jahrgangsstufe eingeben"
+            android:hint="@string/settings__klasse_jahrgangsstufe_eingeben"
             android:inputType="textPersonName"
             tools:ignore="Autofill" />
 
@@ -36,70 +36,70 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Lehrer-Kürzel"
+            android:text="@string/settings__lehrer_names"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <Switch
             android:id="@+id/switchLehrerDisplayFull"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vollständige Lehrernamen anzeigen" />
+            android:text="@string/settings__switch_lehrer_names" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Wochenübersicht"
+            android:text="@string/settings__week_view"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <Switch
             android:id="@+id/switchWeek"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wochenübersicht statt Vertretungsplan" />
+            android:text="@string/settings__week_switch" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Startseite"
+            android:text="@string/settings__startseite"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/startseiten" />
+            android:entries="@array/settings__startseiten_array" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Entwicklung unterstützen"
+            android:text="@string/settings__donate_button"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Diese App programmiere ich komplett in meiner Freizeit.\nSpenden motivieren mich bei der Entwicklung und helfen mir, Entwicklungskosten zu decken.\nÜber eine kleine Spende würde ich mich sehr freuen!" />
+            android:text="@string/settings__donate_text" />
 
         <Button
             android:id="@+id/button_spenden"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Spenden" />
+            android:text="@string/settings__donate" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Design"
+            android:text="@string/settings__design"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bitte wähle aus den Designs aus. Die App wird sich dann neu öffnen."
+            android:text="@string/settings__design_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <include layout="@layout/themes" />

@@ -1,9 +1,18 @@
 <resources>
+    <!-- General application -->
     <string name="app_name">Gym Herzo</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string-array name="startseiten">
+    <!-- Settings -->
+    <string name="settings__vertretungsplan_filter">Vertretungsplan-Filter</string>
+    <string name="settings__klasse_jahrgangsstufe_eingeben">Klasse/ Jahrgangsstufe eingeben</string>
+    <string name="settings__lehrer_names">Lehrer-Kürzel</string>
+    <string name="settings__switch_lehrer_names">Vollständige Lehrernamen anzeigen</string>
+    <string name="settings__week_view">Wochenübersicht</string>
+    <string name="settings__week_switch">Wochenübersicht statt Vertretungsplan</string>
+    <string name="settings__startseite">Startseite</string>
+    <string-array name="settings__startseiten_array">
         <item>News</item>
         <item>Vertretungsplan</item>
         <item>Notizen</item>
@@ -11,4 +20,32 @@
         <item>Termine</item>
         <item>Speiseplan</item>
     </string-array>
+    <string name="settings__donate">Spenden</string>
+    <string name="settings__donate_text">Diese App programmiere ich komplett in meiner Freizeit.\nSpenden motivieren mich bei der Entwicklung und helfen mir, Entwicklungskosten zu decken.\nÜber eine kleine Spende würde ich mich sehr freuen!</string>
+    <string name="settings__donate_button">Entwicklung unterstützen</string>
+    <string name="settings__design">Design</string>
+    <string name="settings__design_hint">Bitte wähle aus den Designs aus. Die App wird sich dann neu öffnen.</string>
+    <!-- Login -->
+    <string name="login__gymh_log_in">GymH - Log In</string>
+    <string name="login__hint">Bitte logge dich einmalig ein, um auf die App zugreifen zu können.\nDie Zugangsdaten sind die der Webseite</string>
+    <string name="login__username">Benutzername</string>
+    <string name="login__password">Passwort</string>
+    <string name="login__login_button">Anmelden</string>
+    <string name="login___login_invalid">Falscher Login</string>
+    <!-- Notizen -->
+    <string name="notizen__info_autosave">Hinweis: Deine Notiz wird automatisch gespeichert</string>
+    <string name="notizen__input_placeholder">Gib hier deine Notiz ein</string>
+    <!-- About -->
+    <string name="about__img_description">info</string>
+    <!-- Page Titles -->
+    <string name="notizen__title">Notizen</string>
+    <string name="vertretungsplan__title">Vertretungsplan</string>
+    <string name="todo__title">ToDo</string>
+    <string name="termine__title">Termine</string>
+    <string name="speiseplan__title">Speiseplan</string>
+    <string name="stundenplan__title">Stundenplan</string>
+    <string name="gymag__title">Gymag</string>
+    <string name="news__title">News</string>
+    <string name="settings__title">Einstellungen</string>
+    <string name="about__title">Über die App</string>
 </resources>

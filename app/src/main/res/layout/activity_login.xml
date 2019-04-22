@@ -11,21 +11,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GymH - Log In"
+        android:text="@string/login__gymh_log_in"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bitte logge dich einmalig ein, um auf die App zugreifen zu können. Die Zugangsdaten sind die der Webseite" />
+        android:text="@string/login__hint" />
 
     <EditText
         android:id="@+id/editText_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Benutzername"
+        android:hint="@string/login__username"
         android:inputType="textPersonName"
         tools:ignore="Autofill" />
 
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Passwort"
+        android:hint="@string/login__password"
         android:inputType="textPassword"
         tools:ignore="Autofill" />
 
@@ -42,14 +42,14 @@
         android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Anmelden" />
+        android:text="@string/login__login_button" />
 
     <TextView
         android:id="@+id/textViewWrongLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:fontFamily="monospace"
-        android:text="Falscher Login"
+        android:text="@string/login___login_invalid"
         android:textAlignment="center"
         android:textColor="#ff0000"
         android:textSize="30sp"
