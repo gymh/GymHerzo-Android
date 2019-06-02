@@ -1,11 +1,12 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
+import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.net.ConnectivityManager
+import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.net.Uri
+import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -19,10 +20,11 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.webview.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private var context: Context? = null
+    var context: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPref = getSharedPreferences("GYMH", Context.MODE_PRIVATE)
@@ -80,7 +82,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_stundenplan -> fragmentToPlace = Stundenplan()
             R.id.nav_settings -> fragmentToPlace = Settings()
             R.id.nav_about -> fragmentToPlace = About()
-            R.id.nav_gymag -> startActivity(Intent(applicationContext, Gymag::class.java))
         }
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -92,78 +93,85 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     companion object {
-        var webView: WebView? = null
-        @SuppressLint("SetJavaScriptEnabled")
-        fun showInFragmentWebView(webView: WebView, url: String, context: Context?) {
+        lateinit var webView: WebView
+
+        @SuppressLint("SetJavaScriptEnabled", "DefaultLocale")
+        fun showInFragmentWebView(webView: WebView, url: String, context: Context?, accessMainActivity: Activity) {
             var url = url
-            webView.webViewClient = WebViewClient()
-            if (!offline(context!!)) {
-                webView.clearCache(true)
-            }
-            if (offline(context)) {
-                webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-            }
-            webView.webViewClient = WebViewClient()
+            webView.clearCache(true)
             webView.settings.javaScriptEnabled = true
             webView.settings.domStorageEnabled = true
             webView.settings.loadsImagesAutomatically = true
             webView.settings.javaScriptCanOpenWindowsAutomatically = true
             webView.settings.allowFileAccess = true
-            webView.settings.setAppCacheEnabled(true)
+            webView.settings.databaseEnabled = true
+            webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
+            webView.settings.allowContentAccess = true
+            webView.settings.blockNetworkLoads = false
+            webView.settings.setAppCacheEnabled(false)
             webView.settings.allowFileAccessFromFileURLs = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }
-            webView.webViewClient = object : WebViewClient() {
-                override fun onReceivedError(view: WebView, webResourceRequest: WebResourceRequest, webResourceError: WebResourceError) {
-                    webView.loadUrl("file:///android_asset/error.html")
-                }
-            }
-            val progressDialog = ProgressDialog(context)
-            progressDialog.setMessage("Wird geladen...")
-            progressDialog.show()
 
-            val sharedPref = context.getSharedPreferences("GYMH", Context.MODE_PRIVATE)
+            try {
+                val pInfo = context!!.packageManager.getPackageInfo(context.packageName, 0)
+                val version = pInfo.versionName
+                url += if (url.toLowerCase().contains("?")) {
+                    "&android_app_version="
+                } else {
+                    "?android_app_version="
+                }
+                url += version
+            } catch (e: PackageManager.NameNotFoundException) {
+            }
+
+            val sharedPref = context!!.getSharedPreferences("GYMH", Context.MODE_PRIVATE)
             url += if (url.toLowerCase().contains("?")) {
                 "&theme="
             } else {
                 "?theme="
             }
-            url += sharedPref.getString("THEME-NAME", "Standard")
+            var theme = sharedPref.getString("THEME-NAME", "Standard")
+
+            if (theme == "Standard") {
+                when (Configuration.UI_MODE_NIGHT_MASK) {
+                    Configuration.UI_MODE_NIGHT_NO -> {//light theme
+                        theme = "Standard-Light"
+                    }
+                    Configuration.UI_MODE_NIGHT_YES -> {//dark theme
+                        theme = "Standard-Night"
+                    }
+                    Configuration.UI_MODE_NIGHT_UNDEFINED -> {//dark theme
+                        theme = "Standard-Unset"
+                    }
+                }
+            }
+            url += theme
+
             webView.webViewClient = object : WebViewClient() {
+                override fun onReceivedError(view: WebView, webResourceRequest: WebResourceRequest, webResourceError: WebResourceError) {
+                    webView.loadUrl("file:///android_asset/error.html")
+                }
+
+                override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
+                    handler?.proceed()
+                }
+
                 override fun shouldOverrideUrlLoading(webView: WebView, webResourceRequest: WebResourceRequest): Boolean {
-                    when {
-                        url.toLowerCase().contains(".pdf".toLowerCase()) -> {
-                            val builder = CustomTabsIntent.Builder()
-                            val customTabsIntent = builder.build()
-                            customTabsIntent.launchUrl(webView.context, Uri.parse(url))
-                        }
-                        url.toLowerCase().contains("play.google".toLowerCase()) -> {
-                            val builder = CustomTabsIntent.Builder()
-                            val customTabsIntent = builder.build()
-                            customTabsIntent.launchUrl(webView.context, Uri.parse(url))
-                        }
-                        else -> webView.loadUrl(url)
+                    if (!url.contains("https://gymh.philippdormann.de")) {
+                        val builder = CustomTabsIntent.Builder()
+                        val customTabsIntent = builder.build()
+                        customTabsIntent.launchUrl(webView.context, Uri.parse(url))
                     }
                     return true
                 }
 
                 override fun onPageFinished(view: WebView, url: String) {
-                    if (progressDialog.isShowing) {
-                        progressDialog.dismiss()
-                    }
+                    Log.d("GYMH: URL LOADED", url)
                 }
-
-                override fun onReceivedError(webView: WebView, webResourceRequest: WebResourceRequest, webResourceError: WebResourceError) {}
             }
-            Log.d("URL", url)
             webView.loadUrl(url)
-        }
-
-        private fun offline(context: Context): Boolean {
-            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val activeNetworkInfo = connectivityManager.activeNetworkInfo
-            return activeNetworkInfo == null || !activeNetworkInfo.isConnected
         }
     }
 }

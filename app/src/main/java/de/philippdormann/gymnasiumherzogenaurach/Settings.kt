@@ -1,5 +1,6 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -14,6 +15,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 
 class Settings : Fragment() {
+    @SuppressLint("DefaultLocale")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.settings, container, false)
 
@@ -22,6 +24,13 @@ class Settings : Fragment() {
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent = builder.build()
             customTabsIntent.launchUrl(activity!!, Uri.parse("http://paypal.me/philippdormann"))
+        }
+
+        val buttonClearCache = view.findViewById<Button>(R.id.button_clear_cache)
+        buttonClearCache.setOnClickListener {
+            activity!!.cacheDir.deleteRecursively()
+            Toast.makeText(context, "Zwischenspeicher geleert...", Toast.LENGTH_LONG)
+            restart()
         }
 
         val sharedPref = activity!!.getSharedPreferences("GYMH", Context.MODE_PRIVATE)
@@ -33,6 +42,7 @@ class Settings : Fragment() {
 
             }
 
+            @SuppressLint("DefaultLocale")
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 editor.putString("FILTER", editTextFilter.text.toString().toUpperCase())
                 editor.apply()
@@ -58,6 +68,20 @@ class Settings : Fragment() {
         switchWeek.isChecked = sharedPref.getBoolean("WOCHENANSICHT", false)
         switchWeek.setOnCheckedChangeListener { _, isChecked ->
             editor.putBoolean("WOCHENANSICHT", isChecked)
+            editor.apply()
+        }
+
+        val switchVPReadable = view.findViewById<Switch>(R.id.switch_vp_readable)
+        switchVPReadable.isChecked = sharedPref.getBoolean("VP_READABLE", false)
+        switchVPReadable.setOnCheckedChangeListener { _, isChecked ->
+            editor.putBoolean("VP_READABLE", isChecked)
+            editor.apply()
+        }
+
+        val switchVPGeneral = view.findViewById<Switch>(R.id.switch_vp_general)
+        switchVPGeneral.isChecked = sharedPref.getBoolean("VP_GENERAL", true)
+        switchVPGeneral.setOnCheckedChangeListener { _, isChecked ->
+            editor.putBoolean("VP_GENERAL", isChecked)
             editor.apply()
         }
 

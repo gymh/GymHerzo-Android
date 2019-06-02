@@ -33,10 +33,6 @@
             android:icon="@drawable/clock"
             android:title="@string/stundenplan__title" />
         <item
-            android:id="@+id/nav_gymag"
-            android:icon="@drawable/movie"
-            android:title="@string/gymag__title" />
-        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings"
             android:title="@string/settings__title" />

@@ -1,5 +1,6 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,6 +17,7 @@ import java.security.MessageDigest
 
 class Login : AppCompatActivity() {
 
+    @SuppressLint("DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
