@@ -29,7 +29,7 @@ class Settings : Fragment() {
         val buttonClearCache = view.findViewById<Button>(R.id.button_clear_cache)
         buttonClearCache.setOnClickListener {
             activity!!.cacheDir.deleteRecursively()
-            Toast.makeText(context, "Zwischenspeicher geleert...", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Zwischenspeicher geleert...", Toast.LENGTH_LONG).show()
             restart()
         }
 

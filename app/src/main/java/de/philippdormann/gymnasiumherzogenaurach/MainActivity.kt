@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.webview.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    var context: Context? = null
+    private var context: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPref = getSharedPreferences("GYMH", Context.MODE_PRIVATE)

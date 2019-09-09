@@ -53,17 +53,17 @@ class Vertretungsplan : Fragment() {
             if (shouldShowLehrerFullname) {
                 vpWeekURL += "&display-lehrer-full"
             }
-            MainActivity.showInFragmentWebView(MainActivity.webView!!, vpWeekURL, activity, MainActivity())
+            MainActivity.showInFragmentWebView(MainActivity.webView, vpWeekURL, activity, MainActivity())
         } else {
             var finalVpURL = vpURL
             val vpReadable = sharedPref.getBoolean("VP_READABLE", false)
             finalVpURL += "&vpr=$vpReadable"
-            montag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView!!, "$finalVpURL&d=mo", activity, MainActivity()) }
-            dienstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView!!, "$finalVpURL&d=di", activity, MainActivity()) }
-            mittwoch.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView!!, "$finalVpURL&d=mi", activity, MainActivity()) }
-            donnerstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView!!, "$finalVpURL&d=do", activity, MainActivity()) }
-            freitag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView!!, "$finalVpURL&d=fr", activity, MainActivity()) }
-            MainActivity.showInFragmentWebView(MainActivity.webView!!, finalVpURL, activity, MainActivity())
+            montag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=mo", activity, MainActivity()) }
+            dienstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=di", activity, MainActivity()) }
+            mittwoch.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=mi", activity, MainActivity()) }
+            donnerstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=do", activity, MainActivity()) }
+            freitag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=fr", activity, MainActivity()) }
+            MainActivity.showInFragmentWebView(MainActivity.webView, finalVpURL, activity, MainActivity())
         }
         return view
     }
