@@ -20,10 +20,6 @@
 ## tools for this project
 - [latest Canary Version of Android Studio](https://developer.android.com/studio/preview)
 
-## soon/ wishlist
-- Gymag Streaming
-- AK News
-
 ## how to build a signed apk for (pre)release
 | key store password | 8H\8~g2%p^5XL,V5 |
 |--------------------|------------------|
