@@ -6,6 +6,7 @@
         <item name="colorAccent">#FFAB00</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
     <style name="Night" parent="ThemeOverlay.MaterialComponents.Dark">

@@ -21,6 +21,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.webview.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -80,6 +83,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_termine -> fragmentToPlace = Termine()
             R.id.nav_speiseplan -> fragmentToPlace = Speiseplan()
             R.id.nav_stundenplan -> fragmentToPlace = Stundenplan()
+            R.id.nav_gymag -> fragmentToPlace = Gymag()
+            R.id.nav_account -> fragmentToPlace = Account()
             R.id.nav_settings -> fragmentToPlace = Settings()
             R.id.nav_about -> fragmentToPlace = About()
         }
@@ -134,20 +139,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             var theme = sharedPref.getString("THEME-NAME", "Standard")
 
+            /*
             if (theme == "Standard") {
-                when (Configuration.UI_MODE_NIGHT_MASK) {
-                    Configuration.UI_MODE_NIGHT_NO -> {//light theme
-                        theme = "Standard-Light"
-                    }
-                    Configuration.UI_MODE_NIGHT_YES -> {//dark theme
-                        theme = "Standard-Night"
-                    }
-                    Configuration.UI_MODE_NIGHT_UNDEFINED -> {//dark theme
-                        theme = "Standard-Unset"
-                    }
-                }
+                */
+            val nightModeFlags = context.getResources().getConfiguration().uiMode and Configuration.UI_MODE_NIGHT_MASK
+            when (nightModeFlags) {
+                Configuration.UI_MODE_NIGHT_YES -> theme = "Night"
+
+                Configuration.UI_MODE_NIGHT_NO -> theme = "Standard"
+
+                Configuration.UI_MODE_NIGHT_UNDEFINED -> theme = "Standard"
             }
+            /*
+            }
+            */
             url += theme
+
+            if (!sharedPref.getBoolean("VP_GENERAL", true)) {
+                url += "&hideGeneral=true"
+            }
+            if (sharedPref.getBoolean("VP_READABLE", true)) {
+                url += "&formatReadable=true"
+            }
 
             webView.webViewClient = object : WebViewClient() {
                 override fun onReceivedError(view: WebView, webResourceRequest: WebResourceRequest, webResourceError: WebResourceError) {
