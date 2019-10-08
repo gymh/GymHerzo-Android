@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/news_article_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/news_article_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="article title"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/news_article_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/news_article_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_local_movies_black_24dp" />
+
+            <TextView
+                android:id="@+id/news_article_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/news_article_image"
+                android:text="lorem ipsum dolor sit amet" />
+            <!--
+            <org.sufficientlysecure.htmltextview.HtmlTextView
+                android:id="@+id/news_article_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/news_article_image"
+                android:textAppearance="@android:style/TextAppearance.Small" />
+-->
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
