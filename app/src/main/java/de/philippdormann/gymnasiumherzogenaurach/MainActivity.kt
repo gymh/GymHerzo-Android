@@ -1,7 +1,6 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -21,10 +20,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.webview.*
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var context: Context? = null
@@ -97,11 +92,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    fun replaceFragment(frag: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.contentFrame, frag)
+        fragmentTransaction.commit()
+    }
+
     companion object {
         lateinit var webView: WebView
 
         @SuppressLint("SetJavaScriptEnabled", "DefaultLocale")
-        fun showInFragmentWebView(webView: WebView, url: String, context: Context?, accessMainActivity: Activity) {
+        fun showInFragmentWebView(webView: WebView, url: String, context: Context?) {
             var url = url
             webView.clearCache(true)
             webView.settings.javaScriptEnabled = true

@@ -32,19 +32,5 @@
             android:text="Freischalten"
             android:textAlignment="center" />
 
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/youtube_player_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:autoPlay="true"
-            app:showFullScreenButton="false"
-            app:videoId="WM6BjT2gqv8" />
-
-        <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/playerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
 </ScrollView>

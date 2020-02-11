@@ -17,6 +17,7 @@ class Vertretungsplan : Fragment() {
         MainActivity.webView = view.findViewById(R.id.webView)
         val sharedPref = activity!!.getSharedPreferences("GYMH", Context.MODE_PRIVATE)
         val filter = sharedPref.getString("FILTER", "")
+        val advancedFilter = sharedPref.getString("ADVANCED_FILTER", "")
         val shouldShowLehrerFullname = sharedPref.getBoolean("LEHRER-FULLNAME", false)
         val displayGeneral = sharedPref.getBoolean("VP_GENERAL", true)
         var vpURL = "https://gymh.philippdormann.de/vertretungsplan/?f=$filter"
@@ -25,6 +26,9 @@ class Vertretungsplan : Fragment() {
         }
         if (!displayGeneral) {
             vpURL += "&hideGeneral"
+        }
+        if (advancedFilter != "") {
+            vpURL += "&filter_combo=$advancedFilter"
         }
         try {
             val pInfo = activity!!.packageManager.getPackageInfo(activity!!.packageName, 0)
@@ -53,17 +57,17 @@ class Vertretungsplan : Fragment() {
             if (shouldShowLehrerFullname) {
                 vpWeekURL += "&display-lehrer-full"
             }
-            MainActivity.showInFragmentWebView(MainActivity.webView, vpWeekURL, activity, MainActivity())
+            MainActivity.showInFragmentWebView(MainActivity.webView, vpWeekURL, activity)
         } else {
             var finalVpURL = vpURL
             val vpReadable = sharedPref.getBoolean("VP_READABLE", false)
             finalVpURL += "&vpr=$vpReadable"
-            montag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=mo", activity, MainActivity()) }
-            dienstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=di", activity, MainActivity()) }
-            mittwoch.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=mi", activity, MainActivity()) }
-            donnerstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=do", activity, MainActivity()) }
-            freitag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=fr", activity, MainActivity()) }
-            MainActivity.showInFragmentWebView(MainActivity.webView, finalVpURL, activity, MainActivity())
+            montag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=mo", activity) }
+            dienstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=di", activity) }
+            mittwoch.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=mi", activity) }
+            donnerstag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=do", activity) }
+            freitag.setOnClickListener { MainActivity.showInFragmentWebView(MainActivity.webView, "$finalVpURL&d=fr", activity) }
+            MainActivity.showInFragmentWebView(MainActivity.webView, finalVpURL, activity)
         }
         return view
     }

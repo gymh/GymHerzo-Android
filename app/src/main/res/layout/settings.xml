@@ -32,6 +32,20 @@
             android:inputType="textPersonName"
             tools:ignore="Autofill" />
 
+        <Button
+            android:id="@+id/buttonSpracheReligionSport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sprachen, Religionsunterricht, Sport für den Filter angeben"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/filter_content"
+            layout="@layout/filter_preferences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,6 +110,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/settings__startseiten_array" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Elternportal-Integration"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <Button
+            android:id="@+id/btn_config_elternportal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Integration konfigurieren" />
 
         <TextView
             android:layout_width="match_parent"

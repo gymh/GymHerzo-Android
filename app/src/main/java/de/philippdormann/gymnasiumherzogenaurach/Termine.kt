@@ -1,11 +1,14 @@
 package de.philippdormann.gymnasiumherzogenaurach
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -13,9 +16,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
-import androidx.recyclerview.widget.DividerItemDecoration
-import android.net.ConnectivityManager
-import android.widget.Toast
 
 
 class Termine : Fragment() {
@@ -74,7 +74,7 @@ class Termine : Fragment() {
         recyclerView.adapter = terminItemAdapter
     }
 
-    fun isOnline(context: Context?): Boolean {
+    private fun isOnline(context: Context?): Boolean {
         val connectivityManager = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo != null && networkInfo.isConnected

@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,41 @@ class Settings : Fragment() {
     @SuppressLint("DefaultLocale")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.settings, container, false)
+
+        val sharedPref = activity!!.getSharedPreferences("GYMH", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        val savedFilter = sharedPref.getString("FILTER", "")!!.toUpperCase()
+
+        var isFilterDetailVisible = false
+        val buttonSpracheReligionSport = view.findViewById<Button>(R.id.buttonSpracheReligionSport)
+        buttonSpracheReligionSport.setOnClickListener {
+            val filterContent = view.findViewById<ScrollView>(R.id.filter_content)
+            if (!savedFilter.toUpperCase().contains("Q1")) {
+                if (isFilterDetailVisible) {
+                    filterContent.visibility = View.GONE
+                    isFilterDetailVisible = false
+                } else {
+                    filterContent.visibility = View.VISIBLE
+                    isFilterDetailVisible = true
+                }
+            } else {
+                buttonSpracheReligionSport.visibility = View.GONE
+                filterContent.visibility = View.GONE
+                isFilterDetailVisible = false
+            }
+        }
+
+        Handler().postDelayed({
+            kotlin.run {
+                if (isFilterDetailVisible) {
+                    val radioGroupSport = view.findViewById<RadioGroup>(R.id.radioGroup_sport)
+                    radioGroupSport.setOnCheckedChangeListener { _, _ ->
+                        val checked = radioGroupSport.checkedRadioButtonId
+                        Log.d("LOGGER", checked.toString())
+                    }
+                }
+            }
+        }, 500);
 
         val button = view.findViewById<Button>(R.id.button_spenden)
         button.setOnClickListener {
@@ -33,10 +70,17 @@ class Settings : Fragment() {
             restart()
         }
 
-        val sharedPref = activity!!.getSharedPreferences("GYMH", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
+        val btn_config_elternportal = view.findViewById<Button>(R.id.btn_config_elternportal)
+        btn_config_elternportal.setOnClickListener {
+            val intent = Intent(getActivity(), ElternportalSettings::class.java)
+            activity!!.startActivity(intent)
+        }
+
         val editTextFilter = view.findViewById<EditText>(R.id.editText_filter)
-        editTextFilter.setText(sharedPref.getString("FILTER", "")!!.toUpperCase())
+        editTextFilter.setText(savedFilter)
+        if (savedFilter != "" && !savedFilter.toUpperCase().contains("Q1")) {
+            buttonSpracheReligionSport.visibility = View.VISIBLE
+        }
         editTextFilter.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
@@ -46,6 +90,15 @@ class Settings : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 editor.putString("FILTER", editTextFilter.text.toString().toUpperCase())
                 editor.apply()
+
+                val filterContent = view.findViewById<ScrollView>(R.id.filter_content)
+                if (editTextFilter.text.toString().toUpperCase() != "" && !editTextFilter.text.toString().toUpperCase().contains("Q")) {
+                    buttonSpracheReligionSport.visibility = View.VISIBLE
+                } else {
+                    buttonSpracheReligionSport.visibility = View.GONE
+                    filterContent.visibility = View.GONE
+                    isFilterDetailVisible = false
+                }
             }
 
             override fun afterTextChanged(s: Editable) {

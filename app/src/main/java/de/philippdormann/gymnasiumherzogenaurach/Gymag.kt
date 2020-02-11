@@ -19,22 +19,12 @@ class Gymag : Fragment() {
         button.setOnClickListener {
             val editText = view.findViewById<EditText>(R.id.gymag_code)
             val gymagCode = editText.text.toString()
-            Toast.makeText(context, gymagCode, Toast.LENGTH_LONG).show()
+
 
             //TODO: network request for active code + active link response
             //TODO: fullscreen support
             if (gymagCode == "2019#104!8974&91074") {
-                val youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
-                getLifecycle().addObserver(youTubePlayerView)
-                /*
-                val player = ExoPlayerFactory.newSimpleInstance(context)
-                val playerView = view.findViewById<PlayerView>(R.id.playerView)
-                playerView.setPlayer(player)
-
-                val dataSourceFactory = DefaultDataSourceFactory(context, Util.getUserAgent(context, "yourApplicationName"))
-                val videoSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(mp4VideoUri)
-                player.prepare(videoSource)
-                */
+                Toast.makeText(context, "success! u did it", Toast.LENGTH_LONG).show()
             }
         }
 
