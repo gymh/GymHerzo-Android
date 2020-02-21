@@ -72,8 +72,10 @@ class Settings : Fragment() {
 
         val btn_config_elternportal = view.findViewById<Button>(R.id.btn_config_elternportal)
         btn_config_elternportal.setOnClickListener {
-            val intent = Intent(getActivity(), ElternportalSettings::class.java)
-            activity!!.startActivity(intent)
+            //val intent = Intent(getActivity(), ElternportalSettings::class.java)
+            //activity!!.startActivity(intent)
+            //TODO: bottom sheet (https://github.com/michaelbel/BottomSheet)
+            activity!!.startActivity(Intent(activity, ElternportalSettings::class.java))
         }
 
         val editTextFilter = view.findViewById<EditText>(R.id.editText_filter)
