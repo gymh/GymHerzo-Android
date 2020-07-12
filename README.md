@@ -20,7 +20,7 @@
 ## tools for this project
 - [latest Canary Version of Android Studio](https://developer.android.com/studio/preview)
 
-## how to build a signed apk for (pre)release
+## how to build a signed apk for testing
 | key store password | 8H\8~g2%p^5XL,V5 |
 |--------------------|------------------|
 | keystore file      | gymh.jks         |
